@@ -26,6 +26,8 @@ export class News extends Component {
       page: 1,
     };
     this.updateNews=this.updateNews.bind(this);
+    this.handelnext=this.handelnext.bind(this);
+    this.handelprev=this.handelprev.bind(this);
     document.title = `${this.capitalizeletter(this.props.category)}-NewsMonkey`;
   }
 
@@ -115,8 +117,7 @@ export class News extends Component {
         {this.state.loading && <Spinner />}
         
         <div className="row">
-        
-          {!this.state.loading &&
+          {!this.state.loading && 
             this.state.articles.map((element) => {
               return (
                 <div className="col-md-4" key={element.url}>
