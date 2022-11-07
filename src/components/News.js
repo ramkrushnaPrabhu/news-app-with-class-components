@@ -25,13 +25,11 @@ export class News extends Component {
       loading: false,
       page: 1,
     };
-    this.updateNews=this.updateNews.bind(this);
-    this.handelnext=this.handelnext.bind(this);
-    this.handelprev=this.handelprev.bind(this);
+
     document.title = `${this.capitalizeletter(this.props.category)}-NewsMonkey`;
   }
 
-  async updateNews(){
+  async updateNews() {
     const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=30d63810341f42198eda8dc15fd45313&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
@@ -41,7 +39,6 @@ export class News extends Component {
       totalResults: parseddata.totalResults,
       loading: false,
     });
-
   }
 
   async componentDidMount() {
@@ -54,7 +51,7 @@ export class News extends Component {
     //   totalResults: parseddata.totalResults,
     //   loading: false,
     // });
-    
+
     this.updateNews();
   }
 
@@ -115,9 +112,10 @@ export class News extends Component {
           this.props.category
         )}`}</h2>
         {this.state.loading && <Spinner />}
-        
+        {console.log(this.state.articles)}
+
         <div className="row">
-          {!this.state.loading && 
+          {!this.state.loading &&
             this.state.articles.map((element) => {
               return (
                 <div className="col-md-4" key={element.url}>
